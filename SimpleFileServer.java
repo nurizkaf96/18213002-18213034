@@ -35,7 +35,7 @@ public class SimpleFileServer {
           //send file
           String message = ois.readLine();
           System.out.println(message);
-          if(message.equalsIgnoreCase("A")){
+          if(message.equalsIgnoreCase("A") ||  message.equalsIgnoreCase("1")){
             File myFile = new File (FILE_TO_SEND_A);
             byte [] mybytearray  = new byte [(int)myFile.length()];
             fis = new FileInputStream(myFile);
@@ -46,7 +46,7 @@ public class SimpleFileServer {
             os.write(mybytearray,0,mybytearray.length);
             os.flush();
             System.out.println("Done.");
-          } else if(message.equalsIgnoreCase("B")){
+          } else if(message.equalsIgnoreCase("B") || message.equalsIgnoreCase("2")){
             File myFile = new File (FILE_TO_SEND_B);
             byte [] mybytearray  = new byte [(int)myFile.length()];
             fis = new FileInputStream(myFile);
@@ -57,7 +57,7 @@ public class SimpleFileServer {
             os.write(mybytearray,0,mybytearray.length);
             os.flush();
             System.out.println("Done.");
-          } else if(message.equalsIgnoreCase("C")){
+          } else if(message.equalsIgnoreCase("C") || message.equalsIgnoreCase("3")){
             File myFile = new File (FILE_TO_SEND_C);
             byte [] mybytearray  = new byte [(int)myFile.length()];
             fis = new FileInputStream(myFile);
