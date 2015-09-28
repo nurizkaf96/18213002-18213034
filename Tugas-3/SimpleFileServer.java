@@ -9,9 +9,10 @@ public class SimpleFileServer {
   public final static String FILE_TO_SEND_A = "D:/Ngampus/Semester 5/pemrograman integratif/A.txt";
   public final static String FILE_TO_SEND_B = "D:/Ngampus/Semester 5/pemrograman integratif/B.txt";
   public final static String FILE_TO_SEND_C = "D:/Ngampus/Semester 5/pemrograman integratif/C.txt";
-  public static void main (String [] args ) throws IOException {
+  public static void main (String [] args ) throws IOException, ClassNotFoundException, InterruptedException {
     FileInputStream fis = null;
     BufferedInputStream bis = null;
+    ObjectInputStream ois = null;
     OutputStream os = null;
     ServerSocket servsock = null;
     Socket sock = null;
@@ -23,18 +24,12 @@ public class SimpleFileServer {
           sock = servsock.accept();
           System.out.println("Accepted connection : " + sock);
           ObjectOutputStream oos = new ObjectOutputStream(sock.getOutputStream());
-          BufferedReader ois = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-          //write object to Socket
-          System.out.println(message);
-          //if(message == "NULL") {
-            oos.writeObject("   Hi Client! Please select text file to download : 1. A.txt 2. B.txt 3. C.txt");
-            
-            //convert ObjectInputStream object to String
-          //  String message = ois.readLine();
-          //}
+          oos.writeObject("   Hi Client! Please select text file to download : 1. A.txt 2. B.txt 3. C.txt");
+          ois = new ObjectInputStream(sock.getInputStream());
+          String message = (String) ois.readObject();
+          System.out.println("Client input : " + message);
+
           //send file
-          String message = ois.readLine();
-          System.out.println(message);
           if(message.equalsIgnoreCase("A") ||  message.equalsIgnoreCase("1")){
             File myFile = new File (FILE_TO_SEND_A);
             byte [] mybytearray  = new byte [(int)myFile.length()];
