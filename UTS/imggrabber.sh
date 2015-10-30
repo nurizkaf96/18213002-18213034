@@ -1,7 +1,7 @@
-wget -nd -r -P /home/nurizkaf96/Documents/ii3160/ -A jpeg,jpg,png http://www.km.itb.ac.id/
-# nurizkaf96 change to your username
-# /Documents/ii3160 just change it anywhere
+wget -nd -r -P /home/kupluk/IMG/ -A jpeg,jpg http://www.itb.ac.id/
+# You may have to change "kupluk" to your username
+# You may change /IMG/ to any directory
 
-rsync -r "/home/nurizkaf96/Documents/ii3160/" "home/nurizkaf96/Documents/Progif/"
-# /home/nurizkaf96/Documents/ii3160/ --> Main directory
-# home/nurizkaf96/Documents/Progif/ --> Backup directory
+rsync -r /home/kupluk/IMG/ /home/kupluk/Backup/
+# /home/kupluk/IMG/ --> Main directory to be backed-up
+# /home/kupluk/Backup/ --> Backup directory
