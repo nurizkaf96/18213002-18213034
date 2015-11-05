@@ -4,11 +4,26 @@
 		$info = file_get_contents('http://localhost/rest-api.php?action= get_info&id =' . $_GET["id"]);
 
 		echo $info;
-		while($row = $info->fetch_assoc()) {
-        echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-
+		
 		$info= json_decode($info, true);
-		echo $info;
 	}
-}
+
 ?>
+
+<table border = "1">
+<tr>
+	<td>ID</td>
+	<td><?php echo $info["id"]?></td>
+</tr>
+<tr>
+	<td>Nama</td>
+	<td><?php echo $info["Nama"]?></td>
+</tr>
+<tr>
+	<td>Jurusan</td>
+	<td><?php echo $info["Jurusan"]?></td>
+</tr>
+<tr>
+	<td>Angkatan</td>
+	<td><?php echo $info["Angkatan"]?></td>
+</tr>
