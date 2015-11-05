@@ -2,27 +2,27 @@
 
 	function get_info_by_id($id)
 	{
-		$conn = new mysqli('localhost', 'root', '', nunukupluk);
-		
-		if ($conn->connect_error) {
-  	  		die("Connection failed: " . $conn->connect_error);
-		}a
-
-		$sql = "SELECT * FROM cinta";
-		$result = $conn->query($sql);
-
+		$result = array();
 		mysql_connect('localhost', 'root', '');
 		mysql_select_db('nunukupluk');
-		$result = mysql_query("SELECT * FROM cinta WHERE id=$id");
-		if ($result->num_rows > 0) {
- 	   	while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["id"]. " - Name: " . $row["Nama"]. " " . $row["Angkatan"]. "<br>";
-    		}
-		}
-		$conn->close();
-
+		$array = mysql_query('SELECT * FROM cinta WHERE id='.$id);
+		$result = mysql_fetch_array ($array, MYSQL_ASSOC);
+		
 		return $result;
-
 	}
+	if(isset($_GET["action"]))
+	{
+		switch($_GET["action"])
+		{
+			case "get_info";
+				if(isset($_GET["id"]))
+					$value=get_info_by_id($_GET["id"]);
+				else
+					$value="ERROR";
+				break;
+		}
+	}
+
+	exit(json_encode($value));
 
 ?>
